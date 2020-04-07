@@ -84,16 +84,16 @@ class BinarySearchTree {
     return postOrderNode(this.root, callback)
   }
 
-  min() {
-    const minNode = (node) => {
-      let currentNode = node
-      while (currentNode.left != null) {
-        currentNode = currentNode.left
-      }
-      return currentNode
+  minNode (node) {
+    let currentNode = node
+    while (currentNode.left != null) {
+      currentNode = currentNode.left
     }
+    return currentNode
+  }
 
-    return minNode(this.root)
+  min() {
+    return this.minNode(this.root)
   }
 
   max() {
@@ -128,6 +128,45 @@ class BinarySearchTree {
     return searchNode(this.root, key)
 
   }
+
+  remove(key) {
+    const removeNode = (node, key) => {
+
+      if (node === null) {
+        return null
+      }
+      if (key < node.key ) {
+        node.left = removeNode(node.left, key)
+        console.log("Current Node L" + node.key)
+        return node
+      } else if ( key > node.key ) {
+        node.right = removeNode(node.right, key)
+        console.log("Current Node R" + node.key)
+        return node
+      } else {
+        if(node.left === null && node.right === null) {
+          node = null
+          console.log("Current Node F" + node)
+          return node
+        }
+
+        if(node.left === null) {
+          node = node.right
+          return node 
+        } else if (node.right === null) {
+          node = node.left
+          return node
+        }
+
+        let aux = this.minNode(node.right)
+        node.key = aux.key
+        node.right = removeNode(node.right, aux.key)
+        return node
+      }
+    }
+
+    return removeNode(this.root, key)
+  }
 }
 
 
@@ -135,13 +174,36 @@ class BinarySearchTree {
 const example = new BinarySearchTree()
 
 
-example.insert(20)
-example.insert(10)
-example.insert(25)
+example.insert(11)
+example.insert(7)
 example.insert(5)
-example.insert(27)
-example.insert(26)
-example.insert(2)
+example.insert(3)
+example.insert(6)
+example.insert(9)
+example.insert(8)
+example.insert(10)
+example.insert(15)
+example.insert(13)
+example.insert(12)
+example.insert(14)
+example.insert(20)
+example.insert(18)
+example.insert(25)
+example.remove(6)
+example.remove(5)
+example.remove(15)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 example.inOrder(key => console.log(key))
@@ -153,4 +215,4 @@ console.log(" - - - - - - - ")
 console.log(" - - - - - - - ")
 console.log(example.min())
 console.log(example.max())
-console.log(example.search(5))
+console.log(example.search(15))
