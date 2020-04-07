@@ -108,6 +108,26 @@ class BinarySearchTree {
 
     return maxNode(this.root)
   }
+
+  search(key) {
+
+    const searchNode = (node, key) => {
+      if(node === null) {
+        return false
+      }
+
+      if (key < node.key ) {
+        return searchNode(node.left, key)
+      } else if ( key > node.key) {
+        return searchNode(node.right, key)
+      } else {
+        return true
+      }
+    }
+
+    return searchNode(this.root, key)
+
+  }
 }
 
 
@@ -133,3 +153,4 @@ console.log(" - - - - - - - ")
 console.log(" - - - - - - - ")
 console.log(example.min())
 console.log(example.max())
+console.log(example.search(5))
