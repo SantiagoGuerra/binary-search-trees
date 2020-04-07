@@ -58,6 +58,19 @@ class BinarySearchTree {
     return inOrderNode(this.root, callback)
 
   }
+
+
+  preOrder(callback) {
+    const preOrderNode = (node, callback) => {
+      if(node != null) {
+        callback(node.key)
+        preOrderNode(node.left, callback)
+        preOrderNode(node.right, callback)
+      }
+    }
+
+    return preOrderNode(this.root, callback)
+  }
 }
 
 
@@ -74,3 +87,5 @@ example.insert(26)
 example.insert(2)
 
 example.inOrder(key => console.log(key))
+console.log(" - - - - - - - ")
+example.preOrder(key => console.log(key))
