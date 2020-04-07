@@ -11,4 +11,39 @@ class BinarySearchTree {
   constructor() {
     this.root = null
   }
+
+  /**
+   * INSERT: The first method that we'll implement; it's the insert() method. This method will add a new
+   * key depending its value
+   */
+
+
+  insert(key) {
+
+    const insertNode = (node, key) => {
+      if(key < node.key) {
+        if(node.left === null) {
+          node.left = new Node(key)
+        } else {
+          return insertNode(node.left, key)
+        }
+      } else {
+        if (node.right === null) {
+          node.right = new Node(key)
+        } else {
+          return insertNode(node.right, key)
+        }
+      }
+    }
+
+    if( this.root === null ) {
+      
+      this.root = new Node( key )
+    
+    } else {
+      return insertNode(this.root, key)
+    }
+  }
+
+
 }
