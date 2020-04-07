@@ -83,6 +83,19 @@ class BinarySearchTree {
 
     return postOrderNode(this.root, callback)
   }
+
+  min() {
+    const minNode = (node) => {
+      let currentNode = node
+      while (currentNode.left != null) {
+        currentNode = currentNode.left
+      }
+      return currentNode
+    }
+
+    return minNode(this.root)
+  }
+
 }
 
 
@@ -98,8 +111,12 @@ example.insert(27)
 example.insert(26)
 example.insert(2)
 
+
 example.inOrder(key => console.log(key))
 console.log(" - - - - - - - ")
 example.preOrder(key => console.log(key))
 console.log(" - - - - - - - ")
 example.postOrder(key => console.log(key))
+console.log(" - - - - - - - ")
+console.log(" - - - - - - - ")
+console.log(example.min())
