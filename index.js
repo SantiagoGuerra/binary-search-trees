@@ -96,6 +96,18 @@ class BinarySearchTree {
     return minNode(this.root)
   }
 
+  max() {
+    const maxNode = node => {
+      let currentNode = node
+      while (currentNode.right != null) {
+        currentNode = currentNode.right
+      }
+
+      return currentNode
+    }
+
+    return maxNode(this.root)
+  }
 }
 
 
@@ -120,3 +132,4 @@ example.postOrder(key => console.log(key))
 console.log(" - - - - - - - ")
 console.log(" - - - - - - - ")
 console.log(example.min())
+console.log(example.max())
