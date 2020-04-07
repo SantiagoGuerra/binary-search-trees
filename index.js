@@ -45,5 +45,32 @@ class BinarySearchTree {
     }
   }
 
+  inOrder(callback) {
+    
+    const inOrderNode = (node, callback) =>{
+      if(node != null) {
+        inOrderNode(node.left, callback)
+        callback(node.key)
+        inOrderNode(node.right, callback)
+      }
+    }
 
+    return inOrderNode(this.root, callback)
+
+  }
 }
+
+
+
+const example = new BinarySearchTree()
+
+
+example.insert(20)
+example.insert(10)
+example.insert(25)
+example.insert(5)
+example.insert(27)
+example.insert(26)
+example.insert(2)
+
+example.inOrder(key => console.log(key))
